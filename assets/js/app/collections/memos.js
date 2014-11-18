@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone","../models/memo","localstorage"],function(a,b,c,d){"use strict";var e=c.Collection.extend({model:d,localStorage:new c.LocalStorage("NotesCollection"),initialize:function(){this.listenTo(this,"remove",this.deleteMemo)},deleteMemo:function(a){a.trigger("delete")}});return new e});

@@ -1,0 +1,1 @@
+define([],function(){"use strict";function a(a){return 10>a?"0"+a:a}return function(b){var c=b.getFullYear(),d=b.getMonth()+1,e=b.getDate();return c+"-"+a(d)+"-"+a(e)}});

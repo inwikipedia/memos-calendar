@@ -1,0 +1,1 @@
+define(["jquery","underscore","backbone"],function(a,b,c){"use strict";return c.Model.extend({deleteMemo:function(){this.destroy()}})});

@@ -1,0 +1,1 @@
+define(["jquery","underscore"],function(a,b){"use strict";return{template:function(c){return b.template(a("#"+c).html())}}});
