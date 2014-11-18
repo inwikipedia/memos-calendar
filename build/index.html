@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="assets/styles/index.css">
+</head>
+<body>
+<main>
+    <script id="memoTemplate" type="text/template">
+        <div class="memo__description">
+            <%- description %>
+        </div>
+        <button class="memo__delete" title="Удалить">✖</button>
+    </script>
+    <script id="calendarTemplate" type="text/template">
+        <header class="calendar__header">
+            <button class="button calendar__prev-month">
+                <span class="button__text">Prev</span>
+            </button>
+            <% if (typeof(data.title) !== "undefined") { %>
+            <span class="calendar__title"><%- data.title %></span>
+            <% } %>
+            <button class="button calendar__next-month">
+                <span class="button__text">Next</span>
+            </button>
+        </header>
+        <table class="calendar__body">
+            <thead>
+            <tr>
+                <% _.each(data.weekdays, function (weekday) { %>
+                <th class="calendar__weekday"><%- weekday %></th>
+                <% }); %>
+            </tr>
+            </thead>
+            <tbody class="calendar__content">
+            <% _.each(data.weeks, function (week) { %>
+            <tr>
+                <%
+                var dt = new Date(),
+                currentDayEqualsShown,
+                currentYear = dt.getFullYear(),
+                currentMonth = dt.getMonth() + 1,
+                currentDay = dt.getDate();
+
+                _.each(week, function (day) {
+                currentDayEqualsShown = day.year === currentYear
+                && day.month === currentMonth
+                && day.number === currentDay;
+                %>
+                <td class="calendar__day
+                <% if (currentDayEqualsShown) { %>
+                    calendar__day_state_current
+                <%} %>"
+                    data-year="<%- day.year %>"
+                    data-month="<%- day.month %>"
+                    data-day="<%- day.number %>"
+                        >
+                    <% if (day.number) { %>
+                    <div class="calendar__day-number"><%- day.number %></div>
+                    <div class="memo-list"></div>
+                    <% } %>
+                </td>
+                <% }); %>
+            </tr>
+            <% }); %>
+            </tbody>
+        </table>
+    </script>
+    <script id="memoFormTemplate" type="text/template">
+        <div class="modal">
+            <div class="modal__content">
+                <div class="field">
+                    <label class="field__label">
+                        <span class="field__label-name">
+                            Description to <%- date.day %>-<%- date.month %>-<%- date.year %>
+                        </span>
+                        <textarea class="field__input" name="memo" autofocus="autofocus"></textarea>
+                    </label>
+                </div>
+                <button class="button button_type_submit" type="submit">
+                    <span class="button__text"><%- button_text %></span>
+                </button>
+                <button class="modal__close" title="Close">✖</button>
+            </div>
+        </div>
+    </script>
+</main>
+<script data-main="assets/js/app/config" src="assets/js/libs/requirejs/require.js"></script>
+</body>

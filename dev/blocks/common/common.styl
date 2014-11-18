@@ -1,0 +1,23 @@
+@require "mixins/*"
+@require "normalize"
+
+
+$body-bg = #fff
+$body-text = #000
+$selection = #f8ca99
+
+// selection
+::selection
+    background $selection
+
+// body
+body
+    background $body-bg
+    color $body-text
+    font 100% Arial, Helvetica, sans-serif
+    height 100%
+    margin auto
+
+main
+    box-sizing border-box
+    padding 1.25rem

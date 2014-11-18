@@ -1,0 +1,16 @@
+file(name, extension, path)
+    path + "/" + name + "." + extension
+
+
+font-face(family, font=family, style=normal, weight=normal, path=family)
+    path = "fonts/" + path
+    @font-face
+        font-family family
+        src url(file(font, "eot", path))
+        src:
+            url(file(font, "eot?#iefix", path)) format("embedded-opentype"),
+            url(file(font, "woff", path)) format("woff"),
+            url(file(font, "ttf", path)) format("truetype"),
+            url(file(font, "svg#" + family, path)) format("svg")
+        font-style unquote(style)
+        font-weight unquote(weight)
